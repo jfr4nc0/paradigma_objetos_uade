@@ -13,4 +13,20 @@ public class UsuarioIndustrial extends Usuario {
         this.iibb = iibb;
         this.condicionFiscal = condicionFiscal;
     }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public String getCuit() {
+        return cuit;
+    }
+
+    public String getIibb() {
+        return iibb;
+    }
+
+    public String getCondicionFiscal() {
+        return condicionFiscal;
+    }
 }

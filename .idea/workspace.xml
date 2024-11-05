@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53989248-4723-42b2-86cc-26f0873bffc3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uade/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uade/controller/FacturasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uade/controller/TarifasController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/UsuarioIndustrial.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/UsuarioResidencial.java" afterDir="false" />
+    <list default="true" id="53989248-4723-42b2-86cc-26f0873bffc3" name="Changes" comment="model usuarios y usuarioController">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/UsuarioIndustrial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/UsuarioIndustrial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,11 +78,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730844280875</updated>
-      <workItem from="1730844281942" duration="2813000" />
+      <workItem from="1730844281942" duration="3986000" />
     </task>
+    <task id="LOCAL-00001" summary="model usuarios y usuarioController">
+      <option name="closed" value="true" />
+      <created>1730847863521</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730847863521</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="model usuarios y usuarioController" />
+    <option name="LAST_COMMIT_MESSAGE" value="model usuarios y usuarioController" />
   </component>
 </project>
