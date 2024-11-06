@@ -4,10 +4,12 @@ import org.uade.model.Usuario;
 import org.uade.model.UsuarioIndustrial;
 import org.uade.model.UsuarioResidencial;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public final class UsuariosController {
     private static volatile UsuariosController INSTANCE;
@@ -55,8 +57,12 @@ public final class UsuariosController {
     }
 
     public Usuario buscarUsuario(Integer nroUsuario) {
-        if (buscarUsuarioResidencial(nroUsuario).isPresent()) {return buscarUsuarioResidencial(nroUsuario).get();}
-        if (buscarUsuarioIndustrial(nroUsuario).isPresent()) {return buscarUsuarioIndustrial(nroUsuario).get();}
+        Optional<UsuarioResidencial> usuarioResidencial = buscarUsuarioResidencial(usuario -> usuario.getNroUsuario().equals(nroUsuario));
+        if (usuarioResidencial.isPresent()) {return usuarioResidencial.get();}
+
+        Optional<UsuarioIndustrial> usuarioIndustrial = buscarUsuarioIndustrial(usuario -> usuario.getNroUsuario().equals(nroUsuario));
+        if (usuarioIndustrial.isPresent()) {return usuarioIndustrial.get();}
+
         throw new IllegalArgumentException("No existe el usuario con el nro '" + nroUsuario + "'");
     }
 
@@ -64,12 +70,12 @@ public final class UsuariosController {
         return null;
     }
 
-    public Boolean existeUsuarioIndustrial(){
-        return false;
+    public Boolean existeUsuarioIndustrial(String cuit){
+        return buscarUsuarioIndustrial(usuarioIndustrial -> usuarioIndustrial.getCuit().equals(cuit)).isPresent();
     }
 
-    public Boolean existeUsuarioResidencial(){
-        return false;
+    public Boolean existeUsuarioResidencial(Integer dni){
+        return buscarUsuarioResidencial(usuarioResidencial -> usuarioResidencial.getDni().equals(dni)).isPresent();
     }
 
     private Integer calcularNroUsuario(){
@@ -100,15 +106,15 @@ public final class UsuariosController {
         if (Objects.isNull(dni)) {throw new IllegalArgumentException("Dni no puede ser nulo");}
     }
 
-    private static Optional<UsuarioIndustrial> buscarUsuarioIndustrial(Integer nroUsuario) {
+    private static Optional<UsuarioIndustrial> buscarUsuarioIndustrial(Predicate<UsuarioIndustrial> condition) {
         return getInstance().usuariosIndustriales.stream()
-                .filter(usuario -> usuario.getNroUsuario().equals(nroUsuario))
+                .filter(condition)
                 .findFirst();
     }
 
-    private static Optional<UsuarioResidencial> buscarUsuarioResidencial(Integer nroUsuario) {
+    private static Optional<UsuarioResidencial> buscarUsuarioResidencial(Predicate<UsuarioResidencial> condition) {
         return getInstance().usuariosResidenciales.stream()
-                .filter(usuario -> usuario.getNroUsuario().equals(nroUsuario))
+                .filter(condition)
                 .findFirst();
     }
 }
