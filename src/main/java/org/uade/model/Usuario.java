@@ -11,9 +11,21 @@ public class Usuario {
     private String localidad;
     private String provincia;
 
+    public Usuario() {}
+
     public Usuario(Integer nroUsuario, String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia) {
         this.nroUsuario = nroUsuario;
         this.medidor = new Medidor();
+        this.calle = calle;
+        this.altura = altura;
+        this.piso = piso;
+        this.depto = depto;
+        this.codigoPostal = codigoPostal;
+        this.localidad = localidad;
+        this.provincia = provincia;
+    }
+
+    public Usuario(String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia) {
         this.calle = calle;
         this.altura = altura;
         this.piso = piso;
