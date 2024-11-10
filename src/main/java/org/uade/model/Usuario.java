@@ -1,8 +1,9 @@
 package org.uade.model;
 
-public class Usuario {
+public abstract class Usuario {
     private Integer nroUsuario;
     private Medidor medidor;
+    private Tarifa tarifa;
     private String calle;
     private Integer altura;
     private Integer piso;
@@ -13,9 +14,9 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(Integer nroUsuario, String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia) {
+    public Usuario(Integer nroUsuario, Medidor medidor, String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia) {
         this.nroUsuario = nroUsuario;
-        this.medidor = new Medidor();
+        this.medidor = medidor;
         this.calle = calle;
         this.altura = altura;
         this.piso = piso;
@@ -33,6 +34,23 @@ public class Usuario {
         this.codigoPostal = codigoPostal;
         this.localidad = localidad;
         this.provincia = provincia;
+    }
+
+    public Double calcularTarifaPorConsumo(Integer anio, Integer bimestre) {
+        Double cantidadKwh = obtenerUltimoConsumo(anio, bimestre);
+        return tarifa.calcularTarifa(cantidadKwh);
+    }
+
+    public Double obtenerUltimoConsumo(Integer anio, Integer bimestre){
+        return obtenerMedicionDeConsumo(anio, bimestre) - obtenerMedicionDeConsumo(anio, bimestre - 1);
+    }
+
+    private Double obtenerMedicionDeConsumo(Integer anio, Integer bimestre) {
+        return medidor.getMediciones().stream()
+                .filter(medicion_ -> medicion_.getAnio().equals(anio) && medicion_.getBimestre().equals(bimestre))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No existe una medicion para el bimestre: " + bimestre))
+                .getLectura();
     }
 
     public Integer getNroUsuario() {
@@ -69,5 +87,13 @@ public class Usuario {
 
     public String getProvincia() {
         return provincia;
+    }
+
+    public Tarifa getTarifa() {
+        return tarifa;
+    }
+
+    public void setTarifa(Tarifa tarifa) {
+        this.tarifa = tarifa;
     }
 }

@@ -1,15 +1,14 @@
 package org.uade.controller;
 
+import org.uade.model.Factura;
 import org.uade.model.Usuario;
 import org.uade.model.UsuarioIndustrial;
 import org.uade.model.UsuarioResidencial;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
+
+import static org.uade.controller.MedidorController.crearMedidor;
 
 public final class UsuariosController {
     private static volatile UsuariosController INSTANCE;
@@ -35,22 +34,18 @@ public final class UsuariosController {
     }
 
     public Integer crearUsuarioResidencial(String nombre, Integer dni, String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia){
-        Usuario usuario = new Usuario(calle, altura, piso, depto, codigoPostal, localidad, provincia);
+        validateUsuarioResidencial(calle, altura, piso, depto, codigoPostal, localidad, provincia, nombre, dni);
 
-        validateUsuarioResidencial(usuario, nombre, dni);
-
-        UsuarioResidencial newUser = new UsuarioResidencial(calcularNroUsuario(), usuario, nombre, dni);
+        UsuarioResidencial newUser = new UsuarioResidencial(calcularNroUsuario(), crearMedidor(), calle, altura, piso, depto, codigoPostal, localidad, provincia, nombre, dni);
         getInstance().usuariosResidenciales.add(newUser);
 
         return newUser.getNroUsuario();
     }
 
     public Integer crearUsuarioIndustrial(String razonSocial, String cuit, String iibb, String condicionFiscal, String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia){
-        Usuario usuario = new Usuario(calle, altura, piso, depto, codigoPostal, localidad, provincia);
+        validateUsuarioIndustrial(calle, altura, piso, depto, codigoPostal, localidad, provincia, razonSocial, cuit, iibb, condicionFiscal);
 
-        validateUsuarioIndustrial(usuario, razonSocial, cuit, iibb, condicionFiscal);
-
-        UsuarioIndustrial newUser = new UsuarioIndustrial(calcularNroUsuario(), usuario, razonSocial, cuit, iibb, condicionFiscal);
+        UsuarioIndustrial newUser = new UsuarioIndustrial(calcularNroUsuario(), crearMedidor(), calle, altura, piso, depto, codigoPostal, localidad, provincia, razonSocial, cuit, iibb, condicionFiscal);
         getInstance().usuariosIndustriales.add(newUser);
 
         return newUser.getNroUsuario();
@@ -66,8 +61,16 @@ public final class UsuariosController {
         throw new IllegalArgumentException("No existe el usuario con el nro '" + nroUsuario + "'");
     }
 
-    public Double consultarConsumo(Integer nroUsuario, Integer anio, Integer bimestre) {
-        return null;
+    public Factura generarFactura(Integer nroUsuario, Integer anio, Integer bimestre){
+        Usuario usuario = buscarUsuario(nroUsuario);
+        Double consumo = usuario.obtenerUltimoConsumo(anio, bimestre);
+        Double montoTotal = usuario.calcularTarifaPorConsumo(anio, bimestre);
+
+        return new Factura(anio, bimestre, usuario, consumo, montoTotal);
+    }
+
+    public Double calcularTarifaPorConsumo(Integer nroUsuario, Integer anio, Integer bimestre) {
+        return buscarUsuario(nroUsuario).calcularTarifaPorConsumo(anio, bimestre);
     }
 
     public Boolean existeUsuarioIndustrial(String cuit){
@@ -82,26 +85,26 @@ public final class UsuariosController {
         return usuariosResidenciales.size() + usuariosIndustriales.size() + 1;
     }
 
-    private void validateUsuario(Usuario usuario){
-        if (Objects.isNull(usuario.getCalle())) {throw new IllegalArgumentException("Calle no puede ser nulo");}
-        if (Objects.isNull(usuario.getAltura())) {throw new IllegalArgumentException("Altura no puede ser nulo");}
-        if (Objects.isNull(usuario.getPiso())) {throw new IllegalArgumentException("Piso no puede ser nulo");}
-        if (Objects.isNull(usuario.getDepto())) {throw new IllegalArgumentException("Depto no puede ser nulo");}
-        if (Objects.isNull(usuario.getCodigoPostal())) {throw new IllegalArgumentException("CodigoPostal no puede ser nulo");}
-        if (Objects.isNull(usuario.getLocalidad())) {throw new IllegalArgumentException("Localidad no puede ser nulo");}
-        if (Objects.isNull(usuario.getProvincia())) {throw new IllegalArgumentException("Provincia no puede ser nulo");}
+    private void validateUsuario(String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia){
+        if (Objects.isNull(calle)) {throw new IllegalArgumentException("Calle no puede ser nulo");}
+        if (Objects.isNull(altura)) {throw new IllegalArgumentException("Altura no puede ser nulo");}
+        if (Objects.isNull(piso)) {throw new IllegalArgumentException("Piso no puede ser nulo");}
+        if (Objects.isNull(depto)) {throw new IllegalArgumentException("Depto no puede ser nulo");}
+        if (Objects.isNull(codigoPostal)) {throw new IllegalArgumentException("CodigoPostal no puede ser nulo");}
+        if (Objects.isNull(localidad)) {throw new IllegalArgumentException("Localidad no puede ser nulo");}
+        if (Objects.isNull(provincia)) {throw new IllegalArgumentException("Provincia no puede ser nulo");}
     }
 
-    private void validateUsuarioIndustrial(Usuario usuario, String razonSocial, String cuit, String iibb, String condicionFiscal){
-        validateUsuario(usuario);
+    private void validateUsuarioIndustrial(String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia, String razonSocial, String cuit, String iibb, String condicionFiscal){
+        validateUsuario(calle, altura, piso, depto, codigoPostal, localidad, provincia);
         if (Objects.isNull(razonSocial)) {throw new IllegalArgumentException("Razon Social no puede ser nulo");}
         if (Objects.isNull(cuit)) {throw new IllegalArgumentException("Cuit no puede ser nulo");}
         if (Objects.isNull(iibb)) {throw new IllegalArgumentException("Iibb no puede ser nulo");}
         if (Objects.isNull(condicionFiscal)) {throw new IllegalArgumentException("Condicion Fiscal no puede ser nulo");}
     }
 
-    private void validateUsuarioResidencial(Usuario usuario, String nombre, Integer dni){
-        validateUsuario(usuario);
+    private void validateUsuarioResidencial(String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia, String nombre, Integer dni){
+        validateUsuario(calle, altura, piso, depto, codigoPostal, localidad, provincia);
         if (Objects.isNull(nombre)) {throw new IllegalArgumentException("Nombre no puede ser nulo");}
         if (Objects.isNull(dni)) {throw new IllegalArgumentException("Dni no puede ser nulo");}
     }
