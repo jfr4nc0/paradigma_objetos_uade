@@ -1,5 +1,6 @@
 package org.uade.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -11,6 +12,7 @@ public class Medidor {
     public Medidor(Integer nroMedidor, Date fechaInstalacion) {
         this.nroMedidor = nroMedidor;
         this.fechaInstalacion = fechaInstalacion;
+        this.mediciones = new ArrayList<Medicion>();
     }
 
     public Date getFechaInstalacion() {

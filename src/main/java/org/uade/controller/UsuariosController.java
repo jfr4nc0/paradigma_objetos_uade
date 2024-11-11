@@ -38,21 +38,21 @@ public final class UsuariosController {
         medidor.getMediciones().add(new Medicion(Calendar.getInstance().getTime(), 2024, 11 , 2400.00));
         UsuarioIndustrial usuarioIndustrial = new UsuarioIndustrial(1, medidor, "Manzoni",1234,0,"0",1407,"CABA","CABA","Mi Empresa SA","33-45689876-9","33-45689876-9","IVA Inscripto");
         usuarioIndustrial.setTarifa(new TarifaIndustrial(100.00, 0.21, 0.03));
-        getInstance().usuariosIndustriales.add(usuarioIndustrial);
+        usuariosIndustriales.add(usuarioIndustrial);
 
         Medidor medidor2 = new Medidor(2, new Date());
         medidor2.getMediciones().add(new Medicion(Calendar.getInstance().getTime(), 2024, 10 , 1500.00));
         medidor2.getMediciones().add(new Medicion(Calendar.getInstance().getTime(), 2024, 11 , 2400.00));
         UsuarioResidencial usuarioResidencial = new UsuarioResidencial(2, medidor, "Manzoni",1234,0,"0",1407,"CABA","CABA","Joan Canossa",42999432);
         usuarioResidencial.setTarifa(new TarifaResidencial(100.00, 0.21, 0.09));
-        getInstance().usuariosResidenciales.add(usuarioResidencial);
+        usuariosResidenciales.add(usuarioResidencial);
     }
 
     public Integer crearUsuarioResidencial(String nombre, Integer dni, String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia){
         validateUsuarioResidencial(calle, altura, piso, depto, codigoPostal, localidad, provincia, nombre, dni);
 
         UsuarioResidencial newUser = new UsuarioResidencial(calcularNroUsuario(), crearMedidor(), calle, altura, piso, depto, codigoPostal, localidad, provincia, nombre, dni);
-        getInstance().usuariosResidenciales.add(newUser);
+        usuariosResidenciales.add(newUser);
 
         return newUser.getNroUsuario();
     }
@@ -61,7 +61,7 @@ public final class UsuariosController {
         validateUsuarioIndustrial(calle, altura, piso, depto, codigoPostal, localidad, provincia, razonSocial, cuit, iibb, condicionFiscal);
 
         UsuarioIndustrial newUser = new UsuarioIndustrial(calcularNroUsuario(), crearMedidor(), calle, altura, piso, depto, codigoPostal, localidad, provincia, razonSocial, cuit, iibb, condicionFiscal);
-        getInstance().usuariosIndustriales.add(newUser);
+        usuariosIndustriales.add(newUser);
 
         return newUser.getNroUsuario();
     }
@@ -124,14 +124,14 @@ public final class UsuariosController {
         if (Objects.isNull(dni)) {throw new IllegalArgumentException("Dni no puede ser nulo");}
     }
 
-    private static Optional<UsuarioIndustrial> buscarUsuarioIndustrial(Predicate<UsuarioIndustrial> condition) {
-        return getInstance().usuariosIndustriales.stream()
+    private Optional<UsuarioIndustrial> buscarUsuarioIndustrial(Predicate<UsuarioIndustrial> condition) {
+        return usuariosIndustriales.stream()
                 .filter(condition)
                 .findFirst();
     }
 
-    private static Optional<UsuarioResidencial> buscarUsuarioResidencial(Predicate<UsuarioResidencial> condition) {
-        return getInstance().usuariosResidenciales.stream()
+    private Optional<UsuarioResidencial> buscarUsuarioResidencial(Predicate<UsuarioResidencial> condition) {
+        return usuariosResidenciales.stream()
                 .filter(condition)
                 .findFirst();
     }

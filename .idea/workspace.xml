@@ -4,26 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53989248-4723-42b2-86cc-26f0873bffc3" name="Changes" comment="agrego fuentes y avances">
+    <list default="true" id="53989248-4723-42b2-86cc-26f0873bffc3" name="Changes" comment="cambios">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/AltaUsuarioResidencial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/AltaUsuarioResidencial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/EmpresaElectrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/EmpresaElectrica.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/Factura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/Factura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/Medicion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/Medicion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/Medidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/Medidor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/MenuPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/MenuPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/Tarifa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/Tarifa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/TarifaIndustrial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/TarifaIndustrial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/TarifaResidencial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/TarifaResidencial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/UsuarioIndustrial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/UsuarioIndustrial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/fuentes/UsuarioResidencial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/fuentes_catedra/UsuarioResidencial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/Medicion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/Medicion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/Tarifa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/Tarifa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/TarifaIndustrial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/TarifaIndustrial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/TarifaResidencial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/TarifaResidencial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/Medidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/Medidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uade/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uade/model/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +37,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Debug",
     "Application.MenuPrincipal.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -74,7 +61,7 @@
       <recent name="C:\workspace\uade\ioo\prueba05112024\src\main\java\org\uade\view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MenuPrincipal">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.uade.Main" />
       <module name="prueba05112024" />
@@ -119,7 +106,7 @@
       <updated>1730844280875</updated>
       <workItem from="1730844281942" duration="9395000" />
       <workItem from="1731183734800" duration="6084000" />
-      <workItem from="1731241760600" duration="18142000" />
+      <workItem from="1731241760600" duration="26260000" />
     </task>
     <task id="LOCAL-00001" summary="model usuarios y usuarioController">
       <option name="closed" value="true" />
@@ -161,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731280506204</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="cambios">
+      <option name="closed" value="true" />
+      <created>1731291767695</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731291767695</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +179,28 @@
     <MESSAGE value="crear usuarios y validaciones" />
     <MESSAGE value="buscarUsuario OK" />
     <MESSAGE value="agrego fuentes y avances" />
-    <option name="LAST_COMMIT_MESSAGE" value="agrego fuentes y avances" />
+    <MESSAGE value="cambios" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/uade/controller/UsuariosController.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

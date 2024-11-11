@@ -1,5 +1,8 @@
 package org.uade.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public abstract class Usuario {
     private Integer nroUsuario;
     private Medidor medidor;
@@ -38,7 +41,7 @@ public abstract class Usuario {
 
     public Double calcularTarifaPorConsumo(Integer anio, Integer bimestre) {
         Double cantidadKwh = obtenerUltimoConsumo(anio, bimestre);
-        return tarifa.calcularTarifa(cantidadKwh);
+        return BigDecimal.valueOf(tarifa.calcularTarifa(cantidadKwh)).setScale(2, RoundingMode.UP).doubleValue();
     }
 
     public Double obtenerUltimoConsumo(Integer anio, Integer bimestre){
