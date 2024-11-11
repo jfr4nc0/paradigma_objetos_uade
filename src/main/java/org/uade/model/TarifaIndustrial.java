@@ -3,11 +3,8 @@ package org.uade.model;
 public class TarifaIndustrial extends Tarifa {
     private Double iibb;
 
-    public Double getIibb() {
-        return iibb;
-    }
-
-    public void setIibb(Double iibb) {
+    public TarifaIndustrial(Double valorKwh, Double iva, Double iibb) {
+        super(valorKwh, iva);
         this.iibb = iibb;
     }
 

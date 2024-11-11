@@ -1,9 +1,6 @@
 package org.uade.controller;
 
-import org.uade.model.Factura;
-import org.uade.model.Usuario;
-import org.uade.model.UsuarioIndustrial;
-import org.uade.model.UsuarioResidencial;
+import org.uade.model.*;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -18,6 +15,8 @@ public final class UsuariosController {
     private UsuariosController(){
         usuariosIndustriales = new ArrayList<>();
         usuariosResidenciales = new ArrayList<>();
+
+        cargaInicial();
     }
 
     public static UsuariosController getInstance() {
@@ -31,6 +30,22 @@ public final class UsuariosController {
             }
             return INSTANCE;
         }
+    }
+
+    private void cargaInicial() {
+        Medidor medidor = new Medidor(1, new Date());
+        medidor.getMediciones().add(new Medicion(Calendar.getInstance().getTime(), 2024, 10 , 1500.00));
+        medidor.getMediciones().add(new Medicion(Calendar.getInstance().getTime(), 2024, 11 , 2400.00));
+        UsuarioIndustrial usuarioIndustrial = new UsuarioIndustrial(1, medidor, "Manzoni",1234,0,"0",1407,"CABA","CABA","Mi Empresa SA","33-45689876-9","33-45689876-9","IVA Inscripto");
+        usuarioIndustrial.setTarifa(new TarifaIndustrial(100.00, 0.21, 0.03));
+        getInstance().usuariosIndustriales.add(usuarioIndustrial);
+
+        Medidor medidor2 = new Medidor(2, new Date());
+        medidor2.getMediciones().add(new Medicion(Calendar.getInstance().getTime(), 2024, 10 , 1500.00));
+        medidor2.getMediciones().add(new Medicion(Calendar.getInstance().getTime(), 2024, 11 , 2400.00));
+        UsuarioResidencial usuarioResidencial = new UsuarioResidencial(2, medidor, "Manzoni",1234,0,"0",1407,"CABA","CABA","Joan Canossa",42999432);
+        usuarioResidencial.setTarifa(new TarifaResidencial(100.00, 0.21, 0.09));
+        getInstance().usuariosResidenciales.add(usuarioResidencial);
     }
 
     public Integer crearUsuarioResidencial(String nombre, Integer dni, String calle, Integer altura, Integer piso, String depto, Integer codigoPostal, String localidad, String provincia){

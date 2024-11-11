@@ -4,6 +4,11 @@ public abstract class Tarifa {
     private Double valorKwh;
     private Double iva;
 
+    public Tarifa(Double valorKwh, Double iva) {
+        this.valorKwh = valorKwh;
+        this.iva = iva;
+    }
+
     public Double getValorKwh() {
         return valorKwh;
     }
